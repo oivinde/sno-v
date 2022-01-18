@@ -133,7 +133,7 @@ mkfs.xfs /dev/nvme1n1p1
 
 Exit SSH session for now.
 
-## Configure persistent storage ##
+## Configure persistent storage
 
 Logon to the WebUI *(or use the oc command if that suits you better)*. We are doing several steps here with copy/paste from yaml files.
 
@@ -222,7 +222,7 @@ spec:
 
 
 
-Configure bridged networking for virtual machines
+## Configure bridged networking for virtual machines
 
 
 Now log on the cluster with the oc command from you client.
@@ -290,5 +290,4 @@ Decide if you want to use ISO-files or qcow2 as base. Select the desired templat
 For RHEL, if you use qcow2 image, you can use cloud-init for “unattend” install. With ISO, remember to add OS-disk if you select to customize in the wizard. And we are going to customize the image to replace the default nic with a bridged nic. Simply add a new nic, select the bridged option as named earlier, and delete the default one.
 
 Your machine should now reach out to the bridged network to get an IP. 
-
 
