@@ -1,0 +1,54 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  name: 50-cnv-local-storage
+  labels:
+    machineconfiguration.openshift.io/role: master
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    #storage:
+    #  filesystems:
+    #  - name: storage
+    #    device: /dev/nvme1n1p1
+    #    format: xfs
+    #    wipe_filesystem: false
+    #    path: /var/srv/storage
+    systemd:
+      units:
+        - contents: |
+            [Unit]
+            Description=Create mountpoint /var/srv/storage
+            Before=kubelet.service
+
+            [Service]
+            ExecStart=/bin/mkdir -p /var/srv/storage
+
+            [Install]
+            WantedBy=var-srv-storage.mount
+          enabled: true
+          name: create-mountpoint-var-srv-storage.service
+        - name: var-srv-storage.mount
+          enabled: true
+          contents: |
+            [Unit]
+            Before=local-fs.target
+            [Mount]
+            What=/dev/nvme1n1p1
+            Where=/var/srv/storage
+            Type=xfs
+            [Install]
+            WantedBy=local-fs.target
+        - contents: |
+            [Unit]
+            Description=Set SELinux chcon for hostpath provisioner
+            Before=kubelet.service
+
+            [Service]
+            ExecStart=/usr/bin/chcon -Rt container_file_t /var/srv/storage
+
+            [Install]
+            WantedBy=multi-user.target
+          enabled: true
+          name: hostpath-provisioner.service
