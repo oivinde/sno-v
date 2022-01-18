@@ -2,7 +2,7 @@
 
 HowTo is ment for setting up a quick demo for non-production use, and it is recommended use other ssh-keys than in this guide.
 
-There is some configuration required for running virtual machines after using the Assisted Installer, namely defining persistant storage and for this use case, bridged networking for the virtual machines, and this is the ain focus of this document.
+There is some configuration required for running virtual machines after using the Assisted Installer, namely defining persistant storage and for this use case, bridged networking for the virtual machines, and this is the main focus of this document.
 
 ## Machine config:
 CPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 8-core (16 vCPU) </br>
