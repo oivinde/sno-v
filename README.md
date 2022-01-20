@@ -128,7 +128,7 @@ Select “n” for a new partition and just confirm default choices. After this 
 Next create file system with: (make sure you are formatting the correct device)
 
 ```
-mkfs.xfs /dev/nvme1n1p1 
+sudo mkfs.xfs /dev/nvme1n1p1 
 ```
 
 Exit SSH session for now.
