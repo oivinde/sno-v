@@ -22,7 +22,6 @@ Before following that guide, note that there are a couple of changes that needs 
 
 - Remember to enable checkbox for “OpenShift Virtualization”</br>
 - We will use specific SSH-key</br>
-- We will use fixed IP in this guide</br>
 
 **Cluster name** : ocpmini.somedomain.com</br>
 **Node name** : ocp1.somedomain.com</br>
