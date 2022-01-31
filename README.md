@@ -134,7 +134,14 @@ Exit SSH session for now.
 
 ## Configure persistent storage
 
-Logon to the WebUI *(or use the oc command if that suits you better)*. We are doing several steps here with copy/paste from yaml files.
+Logon to the WebUI or use the oc command if that suits you better. We are doing several steps here with copy/paste from yaml files.
+
+```
+oc login -u kubeadmin -p <thepasswordfrominstaller> https://api.ocpmini.somedomain.com:6443
+```
+```
+oc create -f hpp-hpp-sc.yaml
+```
 
 **HostPathProvisioner**
 
@@ -166,7 +173,11 @@ reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
 ```
 
-Then, under “Compute” - “MachineConfig” create the following: *(mandates that partitioning and formatting has already been done. Remember to edit with correct device name for disk)*
+Then, under “Compute” - “MachineConfig” create the following: *(mandates that partitioning and formatting has already been done. Remember to edit with correct device name for disk)* or with oc command:
+
+```
+oc create -f hpp-mc.yaml
+```
 
 ```
 apiVersion: machineconfiguration.openshift.io/v1
@@ -264,7 +275,13 @@ Apply the policy with the oc command like this:
 oc apply -f br1-bridge.yaml
 ```
 
-Last thing we need to do is create a Network Attachment Definition under Network in the WebUI. Paste the following yaml:
+Last thing we need to do is create a Network Attachment Definition under Network in the WebUI or CLI. 
+
+```
+oc create -f NetworkAttachementDefinition.yml
+```
+
+Paste the following yaml:
 
 ```
 apiVersion: "k8s.cni.cncf.io/v1"
