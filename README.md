@@ -241,7 +241,7 @@ Now log on the cluster with the oc command from you client.
 oc login -u kubeadmin -p <thepasswordfrominstaller> https://api.ocpmini.somedomain.com:6443
 ```
 
-Create a file (br1-bridge.yaml) with the following content on your client (remember to use the correct USB-C NIC device name). This is the node Network Configuration Policy.
+Create a file (br1-policy.yaml) with the following content on your client (remember to use the correct USB-C NIC device name). This is the node Network Configuration Policy.
 
 ```
 apiVersion: nmstate.io/v1beta1
@@ -272,7 +272,7 @@ spec:
 Apply the policy with the oc command like this:
 
 ```
-oc apply -f br1-bridge.yaml
+oc apply -f br1-policy.yaml
 ```
 
 Last thing we need to do is create a Network Attachment Definition under Network in the WebUI or CLI. 
